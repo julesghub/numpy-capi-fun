@@ -1,7 +1,4 @@
-#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
-#define PY_SSIZE_T_CLEAN
-#include <Python.h>
-#include <numpy/arrayobject.h>
+#include "jmod.h"
 
 /* Function to create and return a NumPy array from C */
 static PyObject* create_numpy_array(PyObject* self, PyObject* args) {
@@ -23,6 +20,7 @@ static PyObject* create_numpy_array(PyObject* self, PyObject* args) {
 /* Method definitions */
 static PyMethodDef MyMethods[] = {
     {"create_numpy_array", create_numpy_array, METH_NOARGS, "Creates a NumPy array and returns it"},
+    {"random_array", random_array, METH_NOARGS, "Creates a NumPy array of random numbers"},
     {NULL, NULL, 0, NULL}  // Sentinel
 };
 
@@ -38,9 +36,7 @@ static struct PyModuleDef jmod = {
 /* Module initialization function */
 PyMODINIT_FUNC PyInit_jmod(void) {
     PyObject* m = PyModule_Create(&jmod);
-    if (!m) {
-        return NULL;
-    }
+    if (!m) return NULL;
 
     import_array();  // Initialize NumPy C API
     return m;

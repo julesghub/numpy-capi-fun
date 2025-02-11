@@ -3,18 +3,22 @@
 PYTHON_CONFIG = python3.12-config
 NUMPY_INCLUDE = $(shell python3 -c "import numpy; print(numpy.get_include())")
 
-CFLAGS = -Wall -shared -fPIC -I$(NUMPY_INCLUDE) $(shell $(PYTHON_CONFIG) --includes)
+CC = gcc
+CFLAGS = -Wall -fPIC -I$(NUMPY_INCLUDE) $(shell $(PYTHON_CONFIG) --includes)
 LDFLAGS = $(shell $(PYTHON_CONFIG) --ldflags)
 
-TARGET = jmod.so
-#SRC = jmod.c
-SRC = jmod.c jbit.c
+SOURCES = jmod.c jbit.c
+#SOURCES = jmod.c
+OBJECTS = $(SOURCES:.c=.o)
+MODULE = jmod.so
 
-all: $(TARGET)
+all: $(MODULE)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+$(MODULE): $(OBJECTS)
+	$(CC) $(CFLAGS) -shared -o $@ $^ $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(TARGET) *.o
-
+	rm -f $(MODULE) *.o
