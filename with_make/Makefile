@@ -1,4 +1,4 @@
-# compiles and links everything all at once. Error occurs with Py_Array_API once fixes will improve build separation of files here
+# compiles and links everything all at once.
 
 PYTHON_CONFIG = python3.12-config
 NUMPY_INCLUDE = $(shell python3 -c "import numpy; print(numpy.get_include())")

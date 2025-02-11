@@ -1,0 +1,17 @@
+
+[build-system]
+requires = [
+    "setuptools",
+    "oldest-supported-numpy",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jmod"
+dynamic = ["version"]
+
+# to try
+#[tool.setuptools]
+#ext-modules = [
+#  {name = "j1", sources = ["jmod.c", "jbit.c"]}
+#]
