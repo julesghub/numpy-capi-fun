@@ -3,3 +3,6 @@ An example of using Numpy's C-API to build python extensions.
 Done using: 
 Makefile - use_make
 Python - use_pypi
+
+This repo is for testing the #include mechanism for the C-API, e.g.
+https://numpy.org/doc/stable/reference/c-api/array.html#including-and-importing-the-c-api

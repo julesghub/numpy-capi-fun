@@ -1,4 +1,5 @@
 #define NO_IMPORT_ARRAY
+#define PY_ARRAY_UNIQUE_SYMBOL foobar
 #include "jmod.h"
 
 #include <stdlib.h> // For rand() and srand()

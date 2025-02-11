@@ -1,3 +1,4 @@
+#define PY_ARRAY_UNIQUE_SYMBOL foobar
 #include "jmod.h"
 
 /* Function to create and return a NumPy array from C */
